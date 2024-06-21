@@ -7,8 +7,7 @@ export const newNote = async (note, tags) => {
     content: note,
   };
 
-  insertDB(newNote);
-  return newNote;
+  return insertDB(newNote);
 };
 
 export const getAllNotes = async () => {
