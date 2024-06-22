@@ -8,6 +8,7 @@ import {
   removeNote,
 } from "./notes.js";
 import { listNotes } from "./utils.js";
+import { start } from "./server.js";
 
 yargs(hideBin(process.argv)) //hidebin removes the 2 first entries in argv array
   .command(
@@ -79,7 +80,10 @@ yargs(hideBin(process.argv)) //hidebin removes the 2 first entries in argv array
         default: 5000,
       });
     },
-    (argv) => {}
+    async (argv) => {
+      const notes = await getAllNotes();
+      start(notes, argv.port);
+    }
   )
   .command(
     "clean",
